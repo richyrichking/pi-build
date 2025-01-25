@@ -31,7 +31,7 @@ sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plug
 
 # Create Docker Group and add current user to allow non-sudo usage of Docker
 echo -e "\n \033[32m - - - Adding Current User To docker User Group - - - \033[0m"
-sudo groupadd docker
+sudo groupadd -f docker
 sudo usermod -aG docker $USER
 newgrp docker
 
