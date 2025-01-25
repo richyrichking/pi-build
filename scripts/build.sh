@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Get the path that script is run from for later on when we need to copy a file from the git clone
+# Get the path that script is run from for later on when we need to copy a file from the git repo clone - in case script run from outside that directory
 parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 
 # Update apt package lists
@@ -41,4 +41,5 @@ newgrp docker
 
 # Setting Docker JSON Log Rotation Configuration
 echo -e "\n \033[32m - - - Configuring Docker JSON Log Rotation and File Sizes - - - \033[0m"
-/etc/docker/daemon.json
+cd "$parent_path"
+sudo cp scripts/daemon.json /etc/docker/daemon.json
