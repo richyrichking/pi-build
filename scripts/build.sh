@@ -35,7 +35,7 @@ sudo groupadd -f docker
 sudo usermod -aG docker $USER
 
 # Setting Docker JSON Log Rotation Configuration
-echo -e "\n \033[32m - - - Configuring Docker JSON Log Rotation and File Sizes - - - \033[0m"
+echo -e "\033[32m - - - Configuring Docker JSON Log Rotation and File Sizes - - - \033[0m"
 sudo cp scripts/daemon.json /etc/docker/daemon.json
 
 # Had to put this at the end of the script as it seems to end the script but means we don't need a reboot for changes to take effect
