@@ -1,3 +1,8 @@
+#!/bin/bash
+
+# Get the path that script is run from for later on when we need to copy a file from the git clone
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+
 # Update apt package lists
 echo -e "\033[32m - - - Updating apt Package Lists for Repositories - - - \033[0m"
 sudo apt update
@@ -27,3 +32,13 @@ sudo apt-get update
 # Install Docker Packages
 echo -e "\n \033[32m - - - Installing Docker - - - \033[0m"
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Create Docker Group and add current user to allow non-sudo usage of Docker
+echo -e "\n \033[32m - - - Adding Current User To docker User Group - - - \033[0m"
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+
+# Setting Docker JSON Log Rotation Configuration
+echo -e "\n \033[32m - - - Configuring Docker JSON Log Rotation and File Sizes - - - \033[0m"
+/etc/docker/daemon.json
